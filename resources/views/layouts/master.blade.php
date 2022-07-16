@@ -14,6 +14,17 @@
             </div>  
         </div>
         <script src="{{ asset('assets/js/app.js') }}"></script>
+        <script src="{{ asset('assets/js/extensions/sweetalert2.js') }}"></script>>
+        @if(session('text'))
+        <script>
+            Swal.fire({
+                text: "{{ session('text') }}",
+                icon: "{{ session('icon')?session('icon'):info }}",
+                confirmButtonText: "Close",
+                timer: 5000,
+            });
+        </script>
+        @endif
         @stack('foot-script')
     </body>
 </html>
