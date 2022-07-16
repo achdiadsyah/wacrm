@@ -7,7 +7,7 @@
                 @yield('content') 
             </div>  
         </div>
-        <script src="{{ asset('assets/js/extensions/sweetalert2.js') }}"></script>>
+        <script src="{{ asset('assets/js/extensions/sweetalert2.js') }}"></script>
         @if(session('text'))
         <script>
             Swal.fire({
