@@ -32,9 +32,7 @@ class LoginController extends Controller
         $credentials = $request->only('email', 'password');
         $remember = $request->remember ? true : false;
  
-        if (Auth::attempt($credentials, $remember)) {
-            $request->session()->put('id', auth()->user()->id);
-            $request->session()->put('email', auth()->user()->email);
+        if (Auth::attempt($credentials, $remember)) {           
             return redirect()->route('dashboard');
         } else {
             return redirect()->back()->with([
