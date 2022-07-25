@@ -19,6 +19,7 @@ Route::get('blocked', function () {
 
 Route::middleware(['auth', 'emailCheck'])->group(function () {
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    
 });
 
 Route::prefix('auth')->name('auth.')->group(function () {
@@ -31,4 +32,6 @@ Route::prefix('auth')->name('auth.')->group(function () {
 
     Route::get('forgot-password', [AuthForgotPasswordController::class, 'index'])->name('forgot-password');
     Route::post('forgot-password', [AuthForgotPasswordController::class, 'action'])->name('do-forgot-password');
+
+    Route::get('verify/{token}', [AuthRegisterController::class, 'verify'])->name('verify');
 });
