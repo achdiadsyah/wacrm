@@ -6,6 +6,8 @@ use App\Http\Controllers\Auth\LoginController as AuthLoginController;
 use App\Http\Controllers\Auth\RegisterController as AuthRegisterController;
 use App\Http\Controllers\Auth\ForgotPasswordController as AuthForgotPasswordController;
 
+use App\Http\Controllers\Admin\UserManagementController as AdminUserManagementController;
+
 use App\Http\Controllers\Dashboard\DashboardController;
 
 Route::get('/', function () {
@@ -34,4 +36,11 @@ Route::prefix('auth')->name('auth.')->group(function () {
     Route::post('forgot-password', [AuthForgotPasswordController::class, 'action'])->name('do-forgot-password');
 
     Route::get('verify/{token}', [AuthRegisterController::class, 'verify'])->name('verify');
+});
+
+Route::prefix('admin')->name('admin.')->group(function () {
+   Route::get('user-management', [AdminUserManagementController::class, 'index'])->name('user-management');
+   Route::get('user-management/details/{id}', [AdminUserManagementController::class, 'detailsUser'])->name('user-management-details');
+   Route::post('user-update', [AdminUserManagementController::class, 'updateData'])->name('user-management-update');
+   Route::post('user-delete', [AdminUserManagementController::class, 'deleteData'])->name('user-management-delete');
 });
